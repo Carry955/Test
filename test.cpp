@@ -23,7 +23,6 @@ struct pcb{
 	state process;
 	pcb *next;
 };
-pcb *get_process();
 pcb *get_process(){
 	pcb *q;
 	pcb *t;
@@ -53,13 +52,13 @@ void display(pcb *p){
 	cout<<"name"<<"   "<<"cputime"<<"   "<<"needtime"<<"   "<<"priority"<<"  "<<"state"<<endl;
 	while(p){
 		cout<<p->name;
-		cout<<"   ";
+		cout<<"        ";
 		cout<<p->cputime;
-		cout<<"   ";
+		cout<<"        ";
 		cout<<p->needtime;
-		cout<<"   ";
+		cout<<"        ";
 		cout<<p->priority;
-		cout<<"   ";
+		cout<<"        ";
 		switch (p->process){
             case ready:
                 cout<<"ready"<<endl;
@@ -79,7 +78,7 @@ void display(pcb *p){
 }
 int process_finish(pcb *q){
     int bl = 1;
-    while (bl&&q){
+    while (bl && q){
         bl = bl&&q->needtime==0;
         q = q->next;
     }
@@ -122,7 +121,7 @@ void priority_cal(){
         sleep(2);
         system("clear");
     }
-    printf("All processes have finished, press any key to exit");
+    printf("All processes have finished, press any key to exit\n");
     getchar();
 }
 void display_menu(){
@@ -184,7 +183,7 @@ pcb *get_next(pcb *k, pcb *head){
 }
 void set_state(pcb *p){
     while(p){
-        if(p->needtime = 0){
+        if(p->needtime == 0){
             p->process = finish;
         }
         if(p->process == execute){
@@ -217,7 +216,7 @@ void display_round(pcb *p){
                 cout<<"finish"<<endl;
                 break;
         }
-        p=p->next;
+        p = p->next;
     }
 }
 void round_cal(){
